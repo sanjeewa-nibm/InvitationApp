@@ -15,11 +15,6 @@ export class AppComponent {
 
   httpdata;
  constructor() { }
-
-
-
-
-
    // tslint:disable-next-line:use-life-cycle-interface
    ngOnInit() {
 
