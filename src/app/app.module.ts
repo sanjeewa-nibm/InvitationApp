@@ -6,12 +6,14 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { CustregistrationComponent } from './custregistration/custregistration.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
-  ],
+    HomeComponent,
+    CustregistrationComponent
+    ],
   imports: [
     BrowserModule,
      HttpModule,
@@ -20,7 +22,9 @@ import { HomeComponent } from './home/home.component';
       {
          path: '',
          component: HomeComponent
-      }])
+      },
+      { path: 'cust-reg', component: CustregistrationComponent },
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
