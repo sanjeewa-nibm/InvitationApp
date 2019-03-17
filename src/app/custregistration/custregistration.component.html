@@ -58,62 +58,106 @@
 
   <header class="masthead">
     <div class="container h-100">
-      <div class="row h-100 align-items-center justify-content-center text-center">
-        <div class="col-lg-10 align-self-end">
-            <form [formGroup]="this.customerService.form" (ngSubmit)="onSubmit()">
+      <div class="row h-100">
+        <div class="col-lg-10">
+          <section class="features" id="agenda">
+            <div class="container">
+              <div class="section-heading text-center">
+                <h3>Customer Registration</h3>
+                <hr>
+              </div>
+              <div class="row">
+                <div class="col-lg-12 my-auto">
+                  <div class="container-fluid">
+                    <div class="row">                  
+          
+                      <div class="col-md-12">
+                          <form #f="ngForm" (ngSubmit)="save(f.value)">
+                              <div class="form-group">
+                                <label for="fName">Full Name</label>
+                                <input #fName="ngModel" name="fName" id="fName" [(ngModel)]="product.fName"  type="text" class="form-control" required>
+                                <div class="alert alert-danger" *ngIf="fName.touched && fName.invalid">
+                                    Full Name is required.
+                                </div>
+                              </div>        
+                              <div class="form-group">
+                                <label for="email">Email</label>
+                                <div class="input-group">
+                                  
+                                  <input #email="ngModel" [(ngModel)]="product.email" name="email" id="email" type="email" class="form-control" required>
+                                </div>
+                                <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+                                  <div *ngIf="email?.errors.required">Email is required.</div>
+                                
+                                </div>
+                              </div>        
+                              <div class="form-group">
+                                <label for="mobile">Mobile</label>
+                                <input #mobile="ngModel" name="mobile" id="mobile" [(ngModel)]="product.mobile"  type="text" class="form-control" required>
 
-                <input type="hidden" formControlName="$key">
-                <input type="hidden" formControlName="invitationStatus">
+                                <div class="alert alert-danger" *ngIf="mobile.touched && mobile.invalid">
+                                    Mobile Number is required.
+                                </div>
+                              </div>        
+                              <div class="form-group">
+                                <label for="address">Address</label>
+                                <input #imageUrl="ngModel" [(ngModel)]="product.address" name="address" id="address" type="text" class="form-control" required url>
+                                <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
+                                  <div *ngIf="address?.errors.required">Address is required.</div>
+                                  
+                                </div>
+                              </div> 
+                              <div class="form-group">
+                                  <label for="seatDetail">Seat Detail</label>
+                                  <div class="input-group">
+                                    
+                                    <input #email="ngModel" [(ngModel)]="product.seatDetail" name="seatDetail" id="seatDetail" type="text" class="form-control" required>
+                                  </div>
+                                  <div class="alert alert-danger" *ngIf="seatDetail.touched && seatDetail.invalid">
+                                    <div *ngIf="seatDetail?.errors.required">Seat Detail is required.</div>
+                                  
+                                  </div>
+                                </div>    
+                                <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <div class="input-group">
+                                      
+                                      <input #email="ngModel" [(ngModel)]="product.description" name="description" id="description" type="text" class="form-control" required>
+                                    </div>
+                                    <div class="alert alert-danger" *ngIf="description.touched && description.invalid">
+                                      <div *ngIf="description?.errors.required">Description is required.</div>
+                                    
+                                    </div>
+                                  </div>
 
-                <div class="form-group">
-                  <label>Full Name</label>
-                  <input formControlName="fullName" class="form-control" [ngClass]="{'is-invalid':submitted && formControls.fullName.errors}">
-                  <div class="invalid-feedback" *ngIf="submitted && formControls.fullName.errors">
-                    This field is required.</div>
-                </div>
-                <div class="form-group">
-                  <label>Email</label>
-                  <input formControlName="email" class="form-control" [ngClass]="{'is-invalid':submitted && formControls.email.errors}">
-                  <div class="invalid-feedback" *ngIf="submitted && formControls.email.errors">
-                    Invalid email address.</div>
-                </div>
-                <div class="form-group">
-                  <label>Mobile</label>
-                  <input formControlName="mobile" class="form-control" [ngClass]="{'is-invalid':submitted && formControls.mobile.errors}">
-                  <div class="invalid-feedback" *ngIf="submitted && formControls.mobile.errors">
-                    <label *ngIf="formControls.mobile.errors.required">This field is required.</label>
-                    <label *ngIf="formControls.mobile.errors.minlength">Atleast 10 numbers.</label>
+                                    
+                              <button class="btn btn-primary">Save</button>
+                               
+                      
+                            </form>    
+                       
+                        
+                        <!-- <div class="alert alert-info" *ngIf="showSuccessMessage">
+                          Submitted successfully.
+                        </div> -->
+          
+                      </div>
+                      <!-- <div class="col-md-8">
+                        <app-customer-list></app-customer-list>
+                      </div> -->
+                    </div>
                   </div>
                 </div>
-                <div class="form-group">
-                  <label>Address</label>
-                  <input formControlName="address" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label>Seat Detail</label>
-                  <input formControlName="seatDetail" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label>Description</label>
-                  <input formControlName="description" class="form-control">
-                </div>
-
-                <div class="form-group">
-                  <input type="submit" value="Submit" class="btn btn-primary">
-                  <input type="button" value="Reset" class="btn btn-default" (click)="clearForm()">
-                </div>
-
-                <!-- <div class="form-group">
-                    
-                  </div> -->
-
-              </form>
-
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </div>
   </header>
 
+
+  
   <!-- Footer -->
   <footer class="bg-light py-5">
     <div class="container">
