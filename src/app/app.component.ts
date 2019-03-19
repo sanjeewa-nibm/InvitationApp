@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 // import 'rxjs/add/operator/map';
 import { map } from 'rxjs/operators';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-root',
@@ -14,9 +15,16 @@ export class AppComponent {
   title = 'Invitation App';
 
   httpdata;
- constructor() { }
+ constructor() {
+
+  const config = {
+    // copy firebase configuration from your firebase project
+  };
+  firebase.initializeApp(config);
+  }
    // tslint:disable-next-line:use-life-cycle-interface
    ngOnInit() {
+
 
 
     //  this.http.get('http://jsonplaceholder.typicode.com/users')
