@@ -12,20 +12,21 @@ export class CustregistrationService {
 
 
   create(product) {
-    return this.db.list('/products').push(product);
+    alert('SUCCESS!! ');
+    // return this.db.list('/products').push(product);
   }
   getAll() {
-    return this.db.list('/products');
+    // return this.db.list('/products');
   }
   get(productId) {
-    return this.db.object('/products/' + productId);
+    // return this.db.object('/products/' + productId);
   }
 
   update(productId, product) {
-    return this.db.object('/products/' + productId).update(product);
+    // // return this.db.object('/products/' + productId).update(product);
   }
   delete(productId) {
-    return this.db.object('/products/' + productId).remove();
+    //return this.db.object('/products/' + productId).remove();
   }
 
 }

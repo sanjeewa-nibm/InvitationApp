@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { CustregistrationService } from '../Services/custregistration.service';
 
 @Component({
   selector: 'app-custregistration',
@@ -7,21 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustregistrationComponent implements OnInit {
   product = {};
+  id;
+  // private custregService: CustregistrationServic
+  constructor(private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.id = this.route.snapshot.paramMap.get('id');
 
-  constructor() { }
+  }
 
   ngOnInit() {
   }
 
-   save(product) {
-     console.log(product);
-    // if (this.id)
-    //    this.productService.update(this.id, product);
-    // else
-    //    this.productService.create(product);
+  save(product) {
+    // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.product));
+    //  console.log(product);
+    if (this.id) {
 
+     } else {
+       // this.custregService.create(product);
+    }
 
-    // this.router.navigate(['/admin/products']);
+    this.router.navigate(['']);
   }
 
 }

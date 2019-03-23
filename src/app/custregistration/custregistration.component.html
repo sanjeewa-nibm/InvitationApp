@@ -30,8 +30,9 @@
   <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav" name="mainNav">
     <div class="container">
       <a class="uk-navbar-brand js-scroll-trigger" name="Home" href="#page-top">Home</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -69,78 +70,77 @@
               <div class="row">
                 <div class="col-lg-12 my-auto">
                   <div class="container-fluid">
-                    <div class="row">                  
-          
+                    <div class="row">
+
                       <div class="col-md-12">
-                          <form #f="ngForm" (ngSubmit)="save(f.value)">
-                              <div class="form-group">
-                                <label for="fName">Full Name</label>
-                                <input #fName="ngModel" name="fName" id="fName" [(ngModel)]="product.fName"  type="text" class="form-control" required>
-                                <div class="alert alert-danger" *ngIf="fName.touched && fName.invalid">
-                                    Full Name is required.
-                                </div>
-                              </div>        
-                              <div class="form-group">
-                                <label for="email">Email</label>
-                                <div class="input-group">
-                                  
-                                  <input #email="ngModel" [(ngModel)]="product.email" name="email" id="email" type="email" class="form-control" required>
-                                </div>
-                                <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
-                                  <div *ngIf="email?.errors.required">Email is required.</div>
-                                
-                                </div>
-                              </div>        
-                              <div class="form-group">
-                                <label for="mobile">Mobile</label>
-                                <input #mobile="ngModel" name="mobile" id="mobile" [(ngModel)]="product.mobile"  type="text" class="form-control" required>
+                        <form name="form" (ngSubmit)="f.form.valid && save(f.value)" #f="ngForm" novalidate>
+                          <div class="form-group">
+                            <label for="fName">Full Name</label>
+                            <input #fName="ngModel" name="fName" id="fName" [(ngModel)]="product.fName" type="text"
+                              class="form-control" required>
+                            <div *ngIf="f.submitted && fName.invalid" class="alert alert-danger">
+                              <div *ngIf="fName.errors.required"> Full Name is required.</div>
+                            </div>
+                          </div>
 
-                                <div class="alert alert-danger" *ngIf="mobile.touched && mobile.invalid">
-                                    Mobile Number is required.
-                                </div>
-                              </div>        
-                              <div class="form-group">
-                                <label for="address">Address</label>
-                                <input #imageUrl="ngModel" [(ngModel)]="product.address" name="address" id="address" type="text" class="form-control" required url>
-                                <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
-                                  <div *ngIf="address?.errors.required">Address is required.</div>
-                                  
-                                </div>
-                              </div> 
-                              <div class="form-group">
-                                  <label for="seatDetail">Seat Detail</label>
-                                  <div class="input-group">
-                                    
-                                    <input #email="ngModel" [(ngModel)]="product.seatDetail" name="seatDetail" id="seatDetail" type="text" class="form-control" required>
-                                  </div>
-                                  <div class="alert alert-danger" *ngIf="seatDetail.touched && seatDetail.invalid">
-                                    <div *ngIf="seatDetail?.errors.required">Seat Detail is required.</div>
-                                  
-                                  </div>
-                                </div>    
-                                <div class="form-group">
-                                    <label for="description">Description</label>
-                                    <div class="input-group">
-                                      
-                                      <input #email="ngModel" [(ngModel)]="product.description" name="description" id="description" type="text" class="form-control" required>
-                                    </div>
-                                    <div class="alert alert-danger" *ngIf="description.touched && description.invalid">
-                                      <div *ngIf="description?.errors.required">Description is required.</div>
-                                    
-                                    </div>
-                                  </div>
+                          <div class="form-group">
+                            <label for="email">Email</label>
+                            <input #email="ngModel" name="email" id="email" [(ngModel)]="product.email" type="text"
+                              class="form-control" required email>
+                            <div *ngIf="f.submitted && email.invalid" class="alert alert-danger">
+                              <div *ngIf="email.errors.required"> Email is required.</div>
+                              <div *ngIf="email.errors.email">Email must be a valid email address</div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="mobile">Mobile</label>
+                            <input #mobile="ngModel" name="mobile" id="mobile" [(ngModel)]="product.mobile" type="text"
+                              class="form-control" required>
+                            <div *ngIf="f.submitted && mobile.invalid" class="alert alert-danger">
+                              <div *ngIf="mobile.errors.required"> Mobile Number is required.</div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="address">Address</label>
+                            <input #address="ngModel" [(ngModel)]="product.address" name="address" id="address"
+                              type="text" class="form-control" required>
 
-                                    
-                              <button class="btn btn-primary">Save</button>
-                               
-                      
-                            </form>    
-                       
-                        
+                            <div *ngIf="f.submitted && address.invalid" class="alert alert-danger">
+                              <div *ngIf="address.errors.required"> Address is required.</div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="seatDetail">Seat Detail</label>
+                            <div class="input-group">
+
+                              <input #seatDetail="ngModel" [(ngModel)]="product.seatDetail" name="seatDetail"
+                                id="seatDetail" type="text" class="form-control" required>
+                            </div>
+                            <div *ngIf="f.submitted && seatDetail.invalid" class="alert alert-danger">
+                              <div *ngIf="seatDetail.errors.required"> Seat Detail is required.</div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="description">Description</label>
+                            <div class="input-group">
+
+                              <input #description="ngModel" [(ngModel)]="product.description" name="description"
+                                id="description" type="text" class="form-control" required>
+                            </div>
+                           <div *ngIf="f.submitted && seatDetail.invalid" class="alert alert-danger">
+                              <div *ngIf="seatDetail.errors.required"> Description is required.</div>
+                            </div>
+                          </div>
+                          <button class="btn btn-primary">Save</button>
+
+
+                        </form>
+
+
                         <!-- <div class="alert alert-info" *ngIf="showSuccessMessage">
                           Submitted successfully.
                         </div> -->
-          
+
                       </div>
                       <!-- <div class="col-md-8">
                         <app-customer-list></app-customer-list>
@@ -157,7 +157,7 @@
   </header>
 
 
-  
+
   <!-- Footer -->
   <footer class="bg-light py-5">
     <div class="container">
