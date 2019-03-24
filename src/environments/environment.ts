@@ -6,12 +6,12 @@ export const environment = {
   production: false,
   firebase:
   {
-    apiKey: 'AIzaSyCFM216wKZIg8JEr3r-3oOKR3PtbKpEqIE',
-    authDomain: 'oshop-58731.firebaseapp.com',
-    databaseURL: 'https://oshop-58731.firebaseio.com',
-    projectId: 'oshop-58731',
-    storageBucket: 'oshop-58731.appspot.com',
-    messagingSenderId: '16183957246'
+    apiKey: 'AIzaSyB0FyLmjFNyZD2gQJ2AGUhVTr0Ut3dSByE',
+    authDomain: 'invitationapp-3d6e9.firebaseapp.com',
+    databaseURL: 'https://invitationapp-3d6e9.firebaseio.com',
+    projectId: 'invitationapp-3d6e9',
+    storageBucket: 'invitationapp-3d6e9.appspot.com',
+    messagingSenderId: '1040702981059'
   }
 
 };
