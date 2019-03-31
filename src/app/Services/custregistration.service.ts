@@ -13,7 +13,8 @@ export class CustregistrationService {
 
   create(product) {
     alert('SUCCESS!! ');
-    // return this.db.list('/products').push(product);
+    return this.db.list('Customers').push(product);
+
   }
   getAll() {
     // return this.db.list('/products');
@@ -26,7 +27,7 @@ export class CustregistrationService {
     // // return this.db.object('/products/' + productId).update(product);
   }
   delete(productId) {
-    //return this.db.object('/products/' + productId).remove();
+    // return this.db.object('/products/' + productId).remove();
   }
 
 }

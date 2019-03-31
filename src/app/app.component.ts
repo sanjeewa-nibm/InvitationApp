@@ -4,28 +4,43 @@ import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 // import 'rxjs/add/operator/map';
 import { map } from 'rxjs/operators';
+
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import * as firebase from 'firebase';
+import { environment } from './../environments/environment';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+// const settings = {timestampsInSnapshots: true};
+
 export class AppComponent {
   title = 'Invitation App';
 
   httpdata;
+
  constructor() {
 
   const config = {
     // copy firebase configuration from your firebase project
   };
-  firebase.initializeApp(config);
+
   }
    // tslint:disable-next-line:use-life-cycle-interface
    ngOnInit() {
+    const settings = {timestampsInSnapshots: true};
 
 
+
+    firebase.firestore().settings(settings);
+    var database = firebase.database();
+
+    // firebase.firestore().settings(settings);
 
     //  this.http.get('http://jsonplaceholder.typicode.com/users')
     // //  .subscribe((data) => console.log(data.json()));

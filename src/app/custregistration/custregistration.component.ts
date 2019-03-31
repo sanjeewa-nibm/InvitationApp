@@ -10,8 +10,8 @@ import { CustregistrationService } from '../Services/custregistration.service';
 export class CustregistrationComponent implements OnInit {
   product = {};
   id;
-  // private custregService: CustregistrationServic
-  constructor(private router: Router,
+    constructor(private router: Router,
+      private custregService: CustregistrationService,
     private route: ActivatedRoute
   ) {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -25,9 +25,9 @@ export class CustregistrationComponent implements OnInit {
     // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.product));
     //  console.log(product);
     if (this.id) {
-
+      this.custregService.create(product);
      } else {
-       // this.custregService.create(product);
+        this.custregService.create(product);
     }
 
     this.router.navigate(['']);
