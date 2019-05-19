@@ -28,7 +28,7 @@ export class CustregistrationComponent implements OnInit {
       if (this.custregService.form.get('$key').value == null) {
         this.custregService.create(this.custregService.form.value);
       } else {
-        // this.custregService.update(this.custregService.form.value);
+        this.custregService.update(this.custregService.form.value);
       }
       this.showSuccessMessage = true;
       setTimeout(() => this.showSuccessMessage = false, 3000);

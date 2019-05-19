@@ -59,8 +59,8 @@ customerList: AngularFireList<any>;
     this.customerList = this.firebase.list('Customers');
     return this.customerList.snapshotChanges();
   }
-  delete(productId) {
-    // return this.db.object('/products/' + productId).remove();
+  deleteCustomer($key: string) {
+    this.customerList.remove($key);
   }
 
 }
