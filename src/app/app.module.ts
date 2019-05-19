@@ -19,6 +19,8 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/dat
 import { environment } from './../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CustomerListComponent } from './customer-list/customer-list.component';
+import { LoginComponent } from './login/login.component';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 
 @NgModule({
@@ -26,15 +28,17 @@ import { CustomerListComponent } from './customer-list/customer-list.component';
       AppComponent,
       HomeComponent,
       CustregistrationComponent,
-      CustomerListComponent
+      CustomerListComponent,
+      LoginComponent
    ],
    imports: [
       BrowserModule,
       HttpModule,
       ReactiveFormsModule,
       FormsModule,
+      AngularFireAuthModule,
       AngularFireDatabaseModule,
-      //fordatabase\r\nAngularFirestoreModule,
+      //fordatabase\\r\\nAngularFirestoreModule,
       AngularFireModule.initializeApp(environment.firebase),
       RouterModule.forRoot([
          {
@@ -42,6 +46,7 @@ import { CustomerListComponent } from './customer-list/customer-list.component';
             component: HomeComponent
          },
          { path: 'cust-reg', component: CustregistrationComponent },
+         { path: 'login', component: LoginComponent }
        ])
    ],
    providers: [
