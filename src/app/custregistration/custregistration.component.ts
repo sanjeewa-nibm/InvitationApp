@@ -8,29 +8,42 @@ import { CustregistrationService } from '../Services/custregistration.service';
   styleUrls: ['./custregistration.component.css']
 })
 export class CustregistrationComponent implements OnInit {
-  product = {};
-  id;
-    constructor(private router: Router,
-      private custregService: CustregistrationService,
-    private route: ActivatedRoute
-  ) {
-    this.id = this.route.snapshot.paramMap.get('id');
 
-  }
+  submitted: boolean;
+  showSuccessMessage: boolean;
+
+
+  constructor(private custregService: CustregistrationService) { }
+
+
+  formControls = this.custregService.form.controls;
 
   ngOnInit() {
   }
 
-  save(product) {
-    // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.product));
-    //  console.log(product);
-    if (this.id) {
-      this.custregService.create(product);
-     } else {
-        this.custregService.create(product);
+  onSubmit() {
+    this.submitted = true;
+
+    if (this.custregService.form.valid) {
+      if (this.custregService.form.get('$key').value == null) {
+        this.custregService.create(this.custregService.form.value);
+      } else {
+        // this.custregService.update(this.custregService.form.value);
+      }
+      this.showSuccessMessage = true;
+      setTimeout(() => this.showSuccessMessage = false, 3000);
+      this.submitted = false;
+      this.custregService.form.reset();
+      // this is to be done for proper reset operation
+      this.custregService.form.setValue({
+        $key: null,
+        fullName: '',
+        email: '',
+        mobile: '',
+        address: '',
+        seatD : '',
+        description: ''
+      });
     }
-
-    this.router.navigate(['']);
   }
-
 }

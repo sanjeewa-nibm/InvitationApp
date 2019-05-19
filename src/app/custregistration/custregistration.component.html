@@ -10,20 +10,6 @@
 
   <title>Customer Registration</title>
 
-  <!-- Font Awesome Icons -->
-  <!-- <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
-
-  <!-- Google Fonts -->
-  <!-- <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
-  <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic' rel='stylesheet'
-    type='text/css'> -->
-
-  <!-- Plugin CSS -->
-  <!-- <link href="/node_modules/startbootstrap-creative-gh-pages/vendor/magnific-popup/magnific-popup.css" rel="stylesheet"> -->
-
-  <!-- Theme CSS - Includes Bootstrap -->
-  <!-- <link href="/node_modules/startbootstrap-creative-gh-pages/css/creative.min.css" rel="stylesheet"> -->
-
 </head>
 
 <body id="page-top">
@@ -68,86 +54,65 @@
                 <hr>
               </div>
               <div class="row">
-                <div class="col-lg-12 my-auto">
+                
                   <div class="container-fluid">
                     <div class="row">
 
-                      <div class="col-md-12">
-                        <form name="form" (ngSubmit)="f.form.valid && save(f.value)" #f="ngForm" novalidate>
+                      <div class="col-md-6">
+                        <form [formGroup]="this.custregService.form" (ngSubmit)="onSubmit()"> 
+                          <input type="hidden" formControlName="$key">
                           <div class="form-group">
-                            <label for="fName">Full Name</label>
-                            <input #fName="ngModel" name="fName" id="fName" [(ngModel)]="product.fName" type="text"
-                              class="form-control" required>
-                            <div *ngIf="f.submitted && fName.invalid" class="alert alert-danger">
-                              <div *ngIf="fName.errors.required"> Full Name is required.</div>
-                            </div>
-                          </div>
-
-                          <div class="form-group">
-                            <label for="email">Email</label>
-                            <input #email="ngModel" name="email" id="email" [(ngModel)]="product.email" type="text"
-                              class="form-control" required email>
-                            <div *ngIf="f.submitted && email.invalid" class="alert alert-danger">
-                              <div *ngIf="email.errors.required"> Email is required.</div>
-                              <div *ngIf="email.errors.email">Email must be a valid email address</div>
-                            </div>
+                            <label>Full Name</label>
+                            <input formControlName="fullName" class="form-control" [ngClass]="{'is-invalid':submitted && formControls.fullName.errors}">
+                            <div class="invalid-feedback" *ngIf="submitted && formControls.fullName.errors">
+                              This field is required.</div>
                           </div>
                           <div class="form-group">
-                            <label for="mobile">Mobile</label>
-                            <input #mobile="ngModel" name="mobile" id="mobile" [(ngModel)]="product.mobile" type="text"
-                              class="form-control" required>
-                            <div *ngIf="f.submitted && mobile.invalid" class="alert alert-danger">
-                              <div *ngIf="mobile.errors.required"> Mobile Number is required.</div>
+                            <label>Email</label>
+                            <input formControlName="email" class="form-control" [ngClass]="{'is-invalid':submitted && formControls.email.errors}">
+                            <div class="invalid-feedback" *ngIf="submitted && formControls.email.errors">
+                              Invalid email address.</div>
+                          </div>
+                          <div class="form-group">
+                            <label>Mobile</label>
+                            <input formControlName="mobile" class="form-control" [ngClass]="{'is-invalid':submitted && formControls.mobile.errors}">
+                            <div class="invalid-feedback" *ngIf="submitted && formControls.mobile.errors">
+                              <label *ngIf="formControls.mobile.errors.required">This field is required.</label>
+                              <label *ngIf="formControls.mobile.errors.minlength">Atleast 8 numbers.</label>
                             </div>
                           </div>
                           <div class="form-group">
-                            <label for="address">Address</label>
-                            <input #address="ngModel" [(ngModel)]="product.address" name="address" id="address"
-                              type="text" class="form-control" required>
-
-                            <div *ngIf="f.submitted && address.invalid" class="alert alert-danger">
-                              <div *ngIf="address.errors.required"> Address is required.</div>
-                            </div>
+                            <label>Address</label>
+                            <input formControlName="address" class="form-control" [ngClass]="{'is-invalid':submitted && formControls.address.errors}">
+                            <div class="invalid-feedback" *ngIf="submitted && formControls.address.errors">
+                              Invalid Address.</div>
                           </div>
                           <div class="form-group">
-                            <label for="seatDetail">Seat Detail</label>
-                            <div class="input-group">
-
-                              <input #seatDetail="ngModel" [(ngModel)]="product.seatDetail" name="seatDetail"
-                                id="seatDetail" type="text" class="form-control" required>
-                            </div>
-                            <div *ngIf="f.submitted && seatDetail.invalid" class="alert alert-danger">
-                              <div *ngIf="seatDetail.errors.required"> Seat Detail is required.</div>
-                            </div>
+                            <label>Seat Details</label>
+                            <input formControlName="seatD" class="form-control" [ngClass]="{'is-invalid':submitted && formControls.seatD.errors}">
+                            <div class="invalid-feedback" *ngIf="submitted && formControls.seatD.errors">
+                              Invalid Seat Details.</div>
                           </div>
                           <div class="form-group">
-                            <label for="description">Description</label>
-                            <div class="input-group">
-
-                              <input #description="ngModel" [(ngModel)]="product.description" name="description"
-                                id="description" type="text" class="form-control" required>
-                            </div>
-                           <div *ngIf="f.submitted && seatDetail.invalid" class="alert alert-danger">
-                              <div *ngIf="seatDetail.errors.required"> Description is required.</div>
-                            </div>
+                            <label>Description</label>
+                            <input formControlName="description" class="form-control" [ngClass]="{'is-invalid':submitted && formControls.description.errors}">
+                            <div class="invalid-feedback" *ngIf="submitted && formControls.description.errors">
+                              Invalid Description.</div>
                           </div>
-                          <button class="btn btn-primary">Save</button>
-
-
+                          <div class="form-group">
+                            <input type="submit" class="btn btn-primary" value="Submit">
+                          </div>
                         </form>
-
-
-                        <!-- <div class="alert alert-info" *ngIf="showSuccessMessage">
+                        <div class="alert alert-info"  *ngIf="showSuccessMessage">
                           Submitted successfully.
-                        </div> -->
-
+                        </div>
                       </div>
-                      <!-- <div class="col-md-8">
-                        <app-customer-list></app-customer-list>
-                      </div> -->
+                      <div class="col-md-6">
+                       <app-customer-list></app-customer-list>
+                      </div>
                     </div>
                   </div>
-                </div>
+               
               </div>
             </div>
           </section>
@@ -164,17 +129,6 @@
       <div class="small text-center text-muted">Copyright &copy; 2019 - Invitation App</div>
     </div>
   </footer>
-
-  <!-- Bootstrap core JavaScript -->
-  <!-- <script src="/node_modules/startbootstrap-creative-gh-pages/vendor/jquery/jquery.min.js"></script>
-  <script src="/node_modules/startbootstrap-creative-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
-
-  <!-- Plugin JavaScript -->
-  <!-- <script src="/node_modules/startbootstrap-creative-gh-pages/vendor/jquery-easing/jquery.easing.min.js"></script>
-  <script src="/node_modules/startbootstrap-creative-gh-pages/vendor/magnific-popup/jquery.magnific-popup.min.js"></script> -->
-
-  <!-- Custom scripts for this template -->
-  <!-- <script src="/node_modules/startbootstrap-creative-gh-pages/js/creative.min.js"></script> -->
 
 </body>
 

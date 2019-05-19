@@ -17,31 +17,38 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 
 import { environment } from './../environments/environment';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CustomerListComponent } from './customer-list/customer-list.component';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    CustregistrationComponent
-    ],
-  imports: [
-    BrowserModule,
-     HttpModule,
-     FormsModule,
-    AngularFireDatabaseModule, // for database
-     AngularFirestoreModule,
-     AngularFireModule.initializeApp(environment.firebase),
-
-     RouterModule.forRoot([
-      {
-         path: '',
-         component: HomeComponent
-      },
-      { path: 'cust-reg', component: CustregistrationComponent },
-    ])
-  ],
-  providers: [AngularFireDatabase],
-  bootstrap: [AppComponent]
+   declarations: [
+      AppComponent,
+      HomeComponent,
+      CustregistrationComponent,
+      CustomerListComponent
+   ],
+   imports: [
+      BrowserModule,
+      HttpModule,
+      ReactiveFormsModule,
+      FormsModule,
+      AngularFireDatabaseModule,
+      //fordatabase\r\nAngularFirestoreModule,
+      AngularFireModule.initializeApp(environment.firebase),
+      RouterModule.forRoot([
+         {
+            path: '',
+            component: HomeComponent
+         },
+         { path: 'cust-reg', component: CustregistrationComponent },
+       ])
+   ],
+   providers: [
+      AngularFireDatabase
+   ],
+   bootstrap: [
+      AppComponent
+   ]
 })
 export class AppModule { }
