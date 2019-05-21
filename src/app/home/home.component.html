@@ -35,7 +35,7 @@
               <a class="nav-link js-scroll-trigger" name="about" href="#about">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" name="login" href="/login">Login</a>
+            <a class="nav-link js-scroll-trigger" *ngIf="!user" name="login" href="/login">Login</a>
         </li>
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" (click) = "logout()" name="logout" >Logout</a>
@@ -88,7 +88,7 @@
   </section>
 
   <!-- Footer -->
-  <footer class="bg-light py-5">
+  <footer class="bg-light py-5" class="mt-auto">
     <div class="container">
       <div class="small text-center text-muted">Copyright &copy; 2019 - Invitation App</div>
     </div>
