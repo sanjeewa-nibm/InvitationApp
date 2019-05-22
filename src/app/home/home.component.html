@@ -36,12 +36,12 @@
           </li>
           <ng-template #anonymousUser>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" *ngIf="!(user$ | async) as user" name="login"
+              <a class="nav-link js-scroll-trigger" *ngIf="!(auth.user$ | async) as user" name="login"
                 href="/login">Login</a>
             </li>
           </ng-template>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" *ngIf="user$ | async as user; else anonymousUser" (click) = "logout()" name="logout" >{{ user.displayName }} Logout</a>
+          <a class="nav-link js-scroll-trigger" *ngIf="auth.user$ | async as user; else anonymousUser" (click) = "logout()" name="logout" >{{ user.displayName }} Logout</a>
       </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" name="Register" routerLink="/cust-reg">Register</a>

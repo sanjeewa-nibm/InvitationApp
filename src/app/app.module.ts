@@ -21,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { LoginComponent } from './login/login.component';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AuthService } from './Services/auth.service';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
        ])
    ],
    providers: [
-      AngularFireDatabase
+      AngularFireDatabase,
+      AuthService
    ],
    bootstrap: [
       AppComponent
