@@ -22,6 +22,7 @@ import { CustomerListComponent } from './customer-list/customer-list.component';
 import { LoginComponent } from './login/login.component';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthService } from './Services/auth.service';
+import { AuthGurd } from './Services/auth-gurd.service';
 
 
 @NgModule({
@@ -46,13 +47,15 @@ import { AuthService } from './Services/auth.service';
             path: '',
             component: HomeComponent
          },
-         { path: 'cust-reg', component: CustregistrationComponent },
-         { path: 'login', component: LoginComponent }
+         { path: 'login', component: LoginComponent },
+         { path: 'cust-reg', component: CustregistrationComponent , canActivate : [AuthGurd]}
+         
        ])
    ],
    providers: [
       AngularFireDatabase,
-      AuthService
+      AuthService,
+      AuthGurd
    ],
    bootstrap: [
       AppComponent
