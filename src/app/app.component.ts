@@ -11,6 +11,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import * as firebase from 'firebase';
 import { environment } from './../environments/environment';
+import { AuthService } from './Services/auth.service';
+import { Route } from '@angular/compiler/src/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -24,16 +27,23 @@ export class AppComponent {
 
   httpdata;
 
- constructor() {
+  constructor(private auth: AuthService, router: Router) {
 
-  const config = {
-    // copy firebase configuration from your firebase project
-  };
+    auth.user$.subscribe(user => {
+      if (user) {
+        let returnUrl = localStorage.getItem('returnUrl');
+        router.navigateByUrl(returnUrl);
+      }
+    });
+
+    const config = {
+      // copy firebase configuration from your firebase project
+    };
 
   }
-   // tslint:disable-next-line:use-life-cycle-interface
-   ngOnInit() {
-    const settings = {timestampsInSnapshots: true};
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngOnInit() {
+    const settings = { timestampsInSnapshots: true };
 
 
 
@@ -50,13 +60,13 @@ export class AppComponent {
     // this.http.get('http://jsonplaceholder.typicode.com/users')
     //   .pipe(map(response => response.json()))
     //   .subscribe((data) => this.displaydata(data));
-   }
+  }
 
-//    displaydata(data) {
-//      this.httpdata = data;
-//      console.log(data);
-//     }
-//   onClickSubmit(data) {
-//     alert('Entered Email id : ' + data.emailid);
-//  }
+  //    displaydata(data) {
+  //      this.httpdata = data;
+  //      console.log(data);
+  //     }
+  //   onClickSubmit(data) {
+  //     alert('Entered Email id : ' + data.emailid);
+  //  }
 }

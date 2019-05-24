@@ -17,7 +17,7 @@ export class LoginComponent  {
   login() { 
     // this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
     this.auth.login();
-    this.router.navigate(['']);
+    // this.router.navigate(['']);
   }
 
 }
