@@ -23,6 +23,7 @@ import { LoginComponent } from './login/login.component';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthService } from './Services/auth.service';
 import { AuthGurd } from './Services/auth-gurd.service';
+import { UserService } from './Services/user.service';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { AuthGurd } from './Services/auth-gurd.service';
    providers: [
       AngularFireDatabase,
       AuthService,
-      AuthGurd
+      AuthGurd,
+      UserService
    ],
    bootstrap: [
       AppComponent

@@ -14,6 +14,7 @@ import { environment } from './../environments/environment';
 import { AuthService } from './Services/auth.service';
 import { Route } from '@angular/compiler/src/core';
 import { Router } from '@angular/router';
+import { UserService } from './Services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -27,10 +28,13 @@ export class AppComponent {
 
   httpdata;
 
-  constructor(private auth: AuthService, router: Router) {
+  constructor(private userService: UserService, private auth: AuthService, router: Router) {
 
     auth.user$.subscribe(user => {
       if (user) {
+
+        userService.save(user);
+        
         let returnUrl = localStorage.getItem('returnUrl');
         router.navigateByUrl(returnUrl);
       }
