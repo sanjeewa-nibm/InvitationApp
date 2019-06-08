@@ -24,6 +24,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthService } from './Services/auth.service';
 import { AuthGurd } from './Services/auth-gurd.service';
 import { UserService } from './Services/user.service';
+import { AdminAuthGuard } from './Services/admin-auth-guard.service';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { UserService } from './Services/user.service';
             component: HomeComponent
          },
          { path: 'login', component: LoginComponent },
-         { path: 'cust-reg', component: CustregistrationComponent , canActivate : [AuthGurd]}
+         { path: 'cust-reg', component: CustregistrationComponent 
+         , canActivate : [AuthGurd,AdminAuthGuard]}
          
        ])
    ],
@@ -57,6 +59,7 @@ import { UserService } from './Services/user.service';
       AngularFireDatabase,
       AuthService,
       AuthGurd,
+      AdminAuthGuard,
       UserService
    ],
    bootstrap: [
